@@ -2,9 +2,6 @@ package TravelAgency;
 
 import ballerina.net.http;
 
-const string SUCCESS = "Success";
-const string FAILED = "Failed";
-
 @http:configuration {basePath:"/travel", port:9090}
 service<http> travelAgencyService {
 
@@ -56,7 +53,7 @@ service<http> travelAgencyService {
 
         outResAirline, _ = airlineReservationEP.post("/reserve", outReqAirline);
         string airlineReservationStatus = outResAirline.getJsonPayload().Status.toString();
-        if (airlineReservationStatus.equalsIgnoreCase(FAILED)) {
+        if (airlineReservationStatus.equalsIgnoreCase("Failed")) {
             outResponse.setJsonPayload({"Message":"Failed to reserve airline! " +
                                                   "Provide a valid 'Preference' for 'Airline' and try again"});
             _ = connection.respond(outResponse);
@@ -71,7 +68,7 @@ service<http> travelAgencyService {
 
         outResHotel, _ = hotelReservationEP.post("/reserve", outReqHotel);
         string hotelReservationStatus = outResHotel.getJsonPayload().Status.toString();
-        if (hotelReservationStatus.equalsIgnoreCase(FAILED)) {
+        if (hotelReservationStatus.equalsIgnoreCase("Failed")) {
             outResponse.setJsonPayload({"Message":"Failed to reserve hotel! " +
                                                   "Provide a valid 'Preference' for 'Accommodation' and try again"});
             _ = connection.respond(outResponse);
@@ -86,7 +83,7 @@ service<http> travelAgencyService {
 
         outResCar, _ = carRentalEP.post("/rent", outReqCar);
         string carRentalStatus = outResCar.getJsonPayload().Status.toString();
-        if (carRentalStatus.equalsIgnoreCase(FAILED)) {
+        if (carRentalStatus.equalsIgnoreCase("Failed")) {
             outResponse.setJsonPayload({"Message":"Failed to rent car! " +
                                                   "Provide a valid 'Preference' for 'Car' and try again"});
             _ = connection.respond(outResponse);
