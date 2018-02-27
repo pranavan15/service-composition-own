@@ -1,6 +1,7 @@
 package TravelAgency.AirlineReservation;
 
 import ballerina.net.http;
+import ballerina.log;
 
 const string ECONOMY = "Economy";
 const string BUSINESS = "Business";
@@ -31,9 +32,11 @@ service<http> airlineReservationService {
 
         if (preferredClass.equalsIgnoreCase(ECONOMY) || preferredClass.equalsIgnoreCase(BUSINESS) ||
                                                           preferredClass.equalsIgnoreCase(FIRST)) {
+            log:printInfo("Successfully reserved airline ticket for user: " + name);
             response.setJsonPayload({"Status":"Success"});
         }
         else {
+            log:printWarn("Failed to reserve airline ticket for user: " + name);
             response.setJsonPayload({"Status":"Failed"});
         }
         _ = connection.respond(response);

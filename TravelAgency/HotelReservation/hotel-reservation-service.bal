@@ -1,6 +1,7 @@
 package TravelAgency.HotelReservation;
 
 import ballerina.net.http;
+import ballerina.log;
 
 const string AC = "Air Conditioned";
 const string Normal = "Normal";
@@ -29,9 +30,11 @@ service<http> hotelReservationService {
         }
 
         if (preferredRoomType.equalsIgnoreCase(AC) || preferredRoomType.equalsIgnoreCase(Normal)) {
+            log:printInfo("Successfully reserved hotel room for user: " + name);
             response.setJsonPayload({"Status":"Success"});
         }
         else {
+            log:printWarn("Failed to reserve hotel room for user: " + name);
             response.setJsonPayload({"Status":"Failed"});
         }
         _ = connection.respond(response);

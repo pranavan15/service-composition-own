@@ -1,6 +1,7 @@
 package TravelAgency.CarRental;
 
 import ballerina.net.http;
+import ballerina.log;
 
 const string AC = "Air Conditioned";
 const string Normal = "Normal";
@@ -29,9 +30,11 @@ service<http> carRentalService {
         }
 
         if (preferredType.equalsIgnoreCase(AC) || preferredType.equalsIgnoreCase(Normal)) {
+            log:printInfo("Successfully rented car for user: " + name);
             response.setJsonPayload({"Status":"Success"});
         }
         else {
+            log:printWarn("Failed to reserve rent car for user: " + name);
             response.setJsonPayload({"Status":"Failed"});
         }
         _ = connection.respond(response);
