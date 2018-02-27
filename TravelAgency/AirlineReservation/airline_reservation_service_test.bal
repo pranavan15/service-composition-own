@@ -29,7 +29,7 @@ function testAirlineReservationService () {
     // Send a 'post' request and obtain the response
     response, err = httpEndpoint.post("/reserve", request);
     // 'err' is expected to be null
-    test:assertTrue(err == null, "Cannot reserve airline ticket! Error: " + err.msg);
+    test:assertTrue(err == null, "Error: Cannot reserve airline ticket!");
     // Expected response code is 200
     test:assertIntEquals(response.statusCode, 200, "Airline reservation service did not respond with 200 OK signal!");
     // Check whether the response is as expected

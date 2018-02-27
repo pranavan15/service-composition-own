@@ -29,7 +29,7 @@ function testCarRentalService () {
     // Send a 'post' request and obtain the response
     response, err = httpEndpoint.post("/rent", request);
     // 'err' is expected to be null
-    test:assertTrue(err == null, "Cannot rent car! Error: " + err.msg);
+    test:assertTrue(err == null, "Error: Cannot rent car!");
     // Expected response code is 200
     test:assertIntEquals(response.statusCode, 200, "Car rental service did not respond with 200 OK signal!");
     // Check whether the response is as expected
