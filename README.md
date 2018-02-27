@@ -54,38 +54,48 @@ service-composition
 In ballerina, the unit test cases should be in the same package and the naming convention should be as follows,
 * Test files should contain _test.bal suffix.
 * Test functions should contain test prefix.
-  * e.g.: testBookstoreService()
+  * e.g.: testTravelAgencyService()
 
-This guide contains unit test cases for each method implemented in `jms_producer_utils.bal` and `bookstore_service.bal` files.
-Test files are in the same packages in which the above files are located.
+This guide contains unit test cases for each service implemented above. 
+
+Test files are in the same packages in which the service files are located.
 
 To run the unit tests, go to the sample root directory and run the following command
    ```bash
-   <SAMPLE_ROOT_DIRECTORY>$ ballerina test bookstore/jmsProducer/
+   <SAMPLE_ROOT_DIRECTORY>$ ballerina test TravelAgency/
    ```
 
-To check the implementations of these test files, please go to https://github.com/ballerina-guides/messaging-with-jms-queues/blob/master/bookstore/jmsProducer/ and refer the respective folders of `jms_producer_utils.bal` and `bookstore_service.bal` files. 
+To check the implementations of these test files, please go to https://github.com/ballerina-guides/service-composition/blob/master/TravelAgency/ and refer the respective folders of `airline_reservation_service.bal`,
+`car_rental_service.bal`, `hotel_reservation_service.bal` and `travel_agency_service.bal` files. 
 
 ## <a name="deploying-the-scenario"></a> Deployment
 
-Once you are done with the development, you can deploy the service using any of the methods that we listed below. 
+Once you are done with the development, you can deploy the services using any of the methods that we listed below. 
 
 ### <a name="deploying-on-locally"></a> Deploying Locally
-You can deploy the RESTful service that you developed above, in your local environment. You can create the Ballerina executable archive (.balx) first and then run it in your local environment as follows,
+You can deploy the RESTful services that you developed above, in your local environment. You can create the Ballerina executable archives (.balx) first and then run them in your local environment as follows,
 
 Building 
    ```bash
-    <SAMPLE_ROOT_DIRECTORY>$ ballerina build bookstore/jmsConsumer/
+    <SAMPLE_ROOT_DIRECTORY>$ ballerina build TravelAgency/AirlineReservation/
 
-    <SAMPLE_ROOT_DIRECTORY>$ ballerina build bookstore/jmsProducer/
+    <SAMPLE_ROOT_DIRECTORY>$ ballerina build TravelAgency/HotelReservation/
+
+    <SAMPLE_ROOT_DIRECTORY>$ ballerina build TravelAgency/CarRental/
+    
+    <SAMPLE_ROOT_DIRECTORY>$ ballerina build TravelAgency/
 
    ```
 
 Running
    ```bash
-    <SAMPLE_ROOT_DIRECTORY>$ ballerina run jmsConsumer.balx 
+    <SAMPLE_ROOT_DIRECTORY>$ ballerina run AirlineReservation.balx
+    
+    <SAMPLE_ROOT_DIRECTORY>$ ballerina run HotelReservation.balx 
 
-    <SAMPLE_ROOT_DIRECTORY>$ ballerina run jmsProducer.balx 
+    <SAMPLE_ROOT_DIRECTORY>$ ballerina run CarRental.balx
+     
+    <SAMPLE_ROOT_DIRECTORY>$ ballerina run TravelAgency.balx
 
    ```
 
