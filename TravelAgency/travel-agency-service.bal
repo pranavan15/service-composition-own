@@ -22,6 +22,7 @@ service<http> travelAgencyService {
     resource arrangeTour (http:Connection connection, http:InRequest inRequest) {
 
         http:OutResponse outResponse = {};
+        string name;
         json hotelPreference;
         json airlinePreference;
         json carPreference;
@@ -32,20 +33,21 @@ service<http> travelAgencyService {
                                  "Preference":""
                              };
         try {
-            log:printInfo("Parsing user request payload");
+            log:printInfo("Parsing request payload");
             json inReqPayload = inRequest.getJsonPayload();
-            outReqPayload.Name = inReqPayload.Name.toString();
+            name = inReqPayload.Name.toString();
+            outReqPayload.Name = name;
             outReqPayload.ArrivalDate = inReqPayload.ArrivalDate.toString();
             outReqPayload.DepartureDate = inReqPayload.DepartureDate.toString();
-            hotelPreference = inReqPayload.Preference.Accommodation;
-            airlinePreference = inReqPayload.Preference.Airline;
-            carPreference = inReqPayload.Preference.Car;
-            log:printInfo("Successfully parsed; Username: " + outReqPayload.Name);
+            airlinePreference = inReqPayload.Preference.Airline.toString();
+            hotelPreference = inReqPayload.Preference.Accommodation.toString();
+            carPreference = inReqPayload.Preference.Car.toString();
+            log:printInfo("Successfully parsed; Username: " + name);
         } catch (error err) {
             outResponse.statusCode = 400;
             outResponse.setJsonPayload({"Message":"Bad Request - Invalid Payload"});
             _ = connection.respond(outResponse);
-            log:printWarn("Failed to parse! Bad user request");
+            log:printWarn("Failed to parse! Bad user request\n");
             return;
         }
 
@@ -55,19 +57,19 @@ service<http> travelAgencyService {
         outReqPayloadAirline.Preference = airlinePreference;
         outReqAirline.setJsonPayload(outReqPayloadAirline);
 
-        log:printInfo("Reserving airline ticket for user: " + outReqPayload.Name);
+        log:printInfo("Reserving airline ticket for user: " + name);
         inResAirline, _ = airlineReservationEP.post("/reserve", outReqAirline);
         string airlineReservationStatus = inResAirline.getJsonPayload().Status.toString();
         if (airlineReservationStatus.equalsIgnoreCase("Failed")) {
             outResponse.setJsonPayload({"Message":"Failed to reserve airline! " +
                                                   "Provide a valid 'Preference' for 'Airline' and try again"});
             _ = connection.respond(outResponse);
-            log:printWarn("Cannot arrange tour for user: " + outReqPayload.Name + "; Failed to reserve airline ticket");
+            log:printWarn("Cannot arrange tour for user: " + name + "; Failed to reserve airline ticket\n");
             return;
         }
         log:printInfo("Airline reservation successful!");
 
-        log:printInfo("Reserving hotel room for user: " + outReqPayload.Name);
+        log:printInfo("Reserving hotel room for user: " + name);
         http:OutRequest outReqHotel = {};
         http:InResponse inResHotel = {};
         json outReqPayloadHotel = outReqPayload;
@@ -80,12 +82,12 @@ service<http> travelAgencyService {
             outResponse.setJsonPayload({"Message":"Failed to reserve hotel! " +
                                                   "Provide a valid 'Preference' for 'Accommodation' and try again"});
             _ = connection.respond(outResponse);
-            log:printWarn("Cannot arrange tour for user: " + outReqPayload.Name + "; Failed to reserve hotel room");
+            log:printWarn("Cannot arrange tour for user: " + name + "; Failed to reserve hotel room\n");
             return;
         }
         log:printInfo("Hotel reservation successful!");
 
-        log:printInfo("Renting car for user: " + outReqPayload.Name);
+        log:printInfo("Renting car for user: " + name);
         http:OutRequest outReqCar = {};
         http:InResponse inResCar = {};
         json outReqPayloadCar = outReqPayload;
@@ -98,13 +100,13 @@ service<http> travelAgencyService {
             outResponse.setJsonPayload({"Message":"Failed to rent car! " +
                                                   "Provide a valid 'Preference' for 'Car' and try again"});
             _ = connection.respond(outResponse);
-            log:printWarn("Cannot arrange tour for user: " + outReqPayload.Name + "; Failed to rent car");
+            log:printWarn("Cannot arrange tour for user: " + name + "; Failed to rent car\n");
             return;
         }
         log:printInfo("Car rental successful!");
 
         outResponse.setJsonPayload({"Message":"Congratulations! Your journey is ready!!"});
         _ = connection.respond(outResponse);
-        log:printInfo("Successfully arranged tour for user: " + outReqPayload.Name + "!!");
+        log:printInfo("Successfully arranged tour for user: " + name + " !!\n");
     }
 }
