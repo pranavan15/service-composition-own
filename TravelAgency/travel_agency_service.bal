@@ -31,12 +31,7 @@ service<http> travelAgencyService {
         json airlinePreference;
         json carPreference;
         // Json payload format for an http out request
-        json outReqPayload = {
-                                 "Name":"",
-                                 "ArrivalDate":"",
-                                 "DepartureDate":"",
-                                 "Preference":""
-                             };
+        json outReqPayload = {"Name":"", "ArrivalDate":"", "DepartureDate":"", "Preference":""};
 
         // Try parsing the JSON payload from the user request
         try {
@@ -69,7 +64,7 @@ service<http> travelAgencyService {
         outReqPayloadAirline.Preference = airlinePreference;
         outReqAirline.setJsonPayload(outReqPayloadAirline);
 
-        // Send a post request to airline reservation service with appropriate payload and get the response
+        // Send a post request to airlineReservationService with appropriate payload and get response
         inResAirline, _ = airlineReservationEP.post("/reserve", outReqAirline);
 
         // Get the reservation status
@@ -79,7 +74,7 @@ service<http> travelAgencyService {
             outResponse.setJsonPayload({"Message":"Failed to reserve airline! " +
                                                   "Provide a valid 'Preference' for 'Airline' and try again"});
             _ = connection.respond(outResponse);
-            log:printWarn("Cannot arrange tour for user: " + name + "; Failed to reserve airline ticket\n");
+            log:printWarn("Cannot arrange tour for user: " + name + "; Failed to reserve ticket\n");
             return;
         }
         log:printInfo("Airline reservation successful!");
@@ -94,7 +89,7 @@ service<http> travelAgencyService {
         outReqPayloadHotel.Preference = hotelPreference;
         outReqHotel.setJsonPayload(outReqPayloadHotel);
 
-        // Send a post request to hotel reservation service with appropriate payload and get the response
+        // Send a post request to hotelReservationService with appropriate payload and get response
         inResHotel, _ = hotelReservationEP.post("/reserve", outReqHotel);
 
         // Get the reservation status
@@ -104,7 +99,7 @@ service<http> travelAgencyService {
             outResponse.setJsonPayload({"Message":"Failed to reserve hotel! " +
                                                   "Provide a valid 'Preference' for 'Accommodation' and try again"});
             _ = connection.respond(outResponse);
-            log:printWarn("Cannot arrange tour for user: " + name + "; Failed to reserve hotel room\n");
+            log:printWarn("Cannot arrange tour for user: " + name + "; Failed to reserve room\n");
             return;
         }
         log:printInfo("Hotel reservation successful!");
@@ -119,7 +114,7 @@ service<http> travelAgencyService {
         outReqPayloadCar.Preference = carPreference;
         outReqCar.setJsonPayload(outReqPayloadCar);
 
-        // Send a post request to car rental service with appropriate payload and get the response
+        // Send a post request to carRentalService with appropriate payload and get response
         inResCar, _ = carRentalEP.post("/rent", outReqCar);
 
         // Get the rental status
