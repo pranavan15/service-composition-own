@@ -140,7 +140,7 @@ service<http> travelAgencyService {
             outResponse.setJsonPayload({"Message":"Failed to reserve airline! " + 
             "Provide a valid 'Preference' for 'Airline' and try again"});
             _ = connection.respond(outResponse);
-            log:printWarn("Cannot arrange tour for user: " + name + "; Failed to reserve airline ticket\n");
+            log:printWarn("Cannot arrange tour for user: " + name + "; Failed to reserve ticket\n");
             return;
         }
         log:printInfo("Airline reservation successful!");
@@ -165,7 +165,7 @@ service<http> travelAgencyService {
             outResponse.setJsonPayload({"Message":"Failed to reserve hotel! " + 
             "Provide a valid 'Preference' for 'Accommodation' and try again"});
             _ = connection.respond(outResponse);
-            log:printWarn("Cannot arrange tour for user: " + name + "; Failed to reserve hotel room\n");
+            log:printWarn("Cannot arrange tour for user: " + name + "; Failed to reserve room\n");
             return;
         }
         log:printInfo("Hotel reservation successful!");
