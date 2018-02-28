@@ -162,8 +162,8 @@ service<http> travelAgencyService {
         string hotelReservationStatus = inResHotel.getJsonPayload().Status.toString();
         // If reservation status is negative, send a failure response to user
         if (hotelReservationStatus.equalsIgnoreCase("Failed")) {
-            outResponse.setJsonPayload({"Message":"Failed to reserve hotel! " +
-                                                  "Provide a valid 'Preference' for 'Accommodation' and try again"});
+            outResponse.setJsonPayload({"Message":"Failed to reserve hotel! " + 
+            "Provide a valid 'Preference' for 'Accommodation' and try again"});
             _ = connection.respond(outResponse);
             log:printWarn("Cannot arrange tour for user: " + name + "; Failed to reserve hotel room\n");
             return;
@@ -188,7 +188,7 @@ service<http> travelAgencyService {
         // If rental status is negative, send a failure response to user
         if (carRentalStatus.equalsIgnoreCase("Failed")) {
             outResponse.setJsonPayload({"Message":"Failed to rent car! " +
-                                                  "Provide a valid 'Preference' for 'Car' and try again"});
+            "Provide a valid 'Preference' for 'Car' and try again"});
             _ = connection.respond(outResponse);
             log:printWarn("Cannot arrange tour for user: " + name + "; Failed to rent car\n");
             return;
