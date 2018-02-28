@@ -268,6 +268,8 @@ service<http> airlineReservationService {
 
 ```
 
+
+
 Similar to the above implementation of Airline reservation service, you can also implement the Hotel reservation service and car rental service with a mock logic alike above. 
 Refer the skeletons attached below.
 
@@ -275,8 +277,79 @@ Refer the skeletons attached below.
 ##### hotel_reservation_service.bal
 
 ```ballerina
+package TravelAgency.HotelReservation;
+
+// Imports 
+
+// Declare constants for Available room types
+
+// Hotel reservation service to reserve hotel rooms
+@http:configuration {basePath:"/hotel", port:9092}
+service<http> hotelReservationService {
+
+    // Resource to reserve a room
+    @http:resourceConfig {methods:["POST"], path:"/reserve"}
+    resource reserveRoom (http:Connection connection, http:InRequest request) {
+    
+        try {
+            // Try parsing the JSON payload from the request            
+        } catch (error err) {
+            // If payload parsing fails, send a "Bad Request" message as the response
+        }
+
+        // Mock logic
+        // If request is for an available room type, send a reservation successful status
+        // Otherwise, send a reservation failure status
+           
+        // Send the response
+        _ = connection.respond(response);
+    }
+}
 
 ```
+
+To see the complete implementation of file `hotel_reservation_service.bal` refer
+https://github.com/ballerina-guides/service-composition/blob/master/TravelAgency/HotelReservation/hotel_reservation_service.bal.
+
+
+
+##### car_rental_service.bal
+
+```ballerina
+package TravelAgency.CarRental;
+
+// Imports 
+
+// Declare constants for Available car types
+
+// Car rental service to rent cars
+@http:configuration {basePath:"/car", port:9093}
+service<http> carRentalService {
+
+    // Resource to rent a car
+    @http:resourceConfig {methods:["POST"], path:"/rent"}
+    resource rentCar (http:Connection connection, http:InRequest request) {
+    
+        try {
+            // Try parsing the JSON payload from the request            
+        } catch (error err) {
+            // If payload parsing fails, send a "Bad Request" message as the response
+        }
+
+        // Mock logic
+        // If request is for an available car type, send a rental successful status
+        // Otherwise, send a rental failure status
+           
+        // Send the response
+        _ = connection.respond(response);
+    }
+}
+
+```
+
+To see the complete implementation of file `car_rental_service.bal` refer
+https://github.com/ballerina-guides/service-composition/blob/master/TravelAgency/CarRental/car_rental_service.bal.
+
 
 
 ## <a name="testing"></a> Testing 
