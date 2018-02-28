@@ -130,7 +130,7 @@ service<http> travelAgencyService {
         outReqPayloadAirline.Preference = airlinePreference;
         outReqAirline.setJsonPayload(outReqPayloadAirline);
 
-        // Send a post request to airline reservation service with appropriate payload and get the response
+        // Send a post request to airlineReservationService with appropriate payload and get the response
         inResAirline, _ = airlineReservationEP.post("/reserve", outReqAirline);
 
         // Get the reservation status
@@ -155,7 +155,7 @@ service<http> travelAgencyService {
         outReqPayloadHotel.Preference = hotelPreference;
         outReqHotel.setJsonPayload(outReqPayloadHotel);
 
-        // Send a post request to hotel reservation service with appropriate payload and get the response
+        // Send a post request to hotelReservationService with appropriate payload and get the response
         inResHotel, _ = hotelReservationEP.post("/reserve", outReqHotel);
 
         // Get the reservation status
@@ -180,7 +180,7 @@ service<http> travelAgencyService {
         outReqPayloadCar.Preference = carPreference;
         outReqCar.setJsonPayload(outReqPayloadCar);
 
-        // Send a post request to car rental service with appropriate payload and get the response
+        // Send a post request to carRentalService with appropriate payload and get the response
         inResCar, _ = carRentalEP.post("/rent", outReqCar);
 
         // Get the rental status
