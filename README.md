@@ -138,7 +138,7 @@ service<http> travelAgencyService {
         // If reservation status is negative, send a failure response to user
         if (airlineReservationStatus.equalsIgnoreCase("Failed")) {
             outResponse.setJsonPayload({"Message":"Failed to reserve airline! " +
-                                                  "Provide a valid 'Preference' for 'Airline' and try again"});
+                                        "Provide a valid 'Preference' for 'Airline' and try again"});
             _ = connection.respond(outResponse);
             log:printWarn("Cannot arrange tour for user: " + name + "; Failed to reserve airline ticket\n");
             return;
