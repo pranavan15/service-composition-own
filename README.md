@@ -1,9 +1,13 @@
 # Service Composition
 
+This guide walks you through the process of implementing a service composition using Ballerina language. A service composition is an aggregate of services collectively composed to automate a particular task or business process. 
+
 ## <a name="what-you-build"></a>  What you’ll Build
+To understanding how you can build a service composition using Ballerina, let's consider a real-world use case of a Travel agency, which arranges complete tour packages for users. Tour package includes Airline ticket reservation, Hotel room reservation and Car rental. Therefore, the Travel agency required to communicate with other back-ends, which provide the above-mentioned services. Once a client initiates a request to arrange a tour, the Travel agency service will first communicate with the Airline reservation service to book the flight ticket. Then it will communicate with the Hotel reservation service to reserve hotel rooms. Finally, it will connect with the Car rental service to arrange internal transports. If all successful, the Travel agency service will confirm and arrange the complete tour for the user. The below diagram illustrates this use case clearly.
 
 
 ![alt text](https://github.com/pranavan15/service-composition/blob/master/images/serviceComposition.png)
+
 
 
 ## <a name="pre-req"></a> Prerequisites
@@ -51,7 +55,10 @@ Package `HotelReservation` contains the service that provides online hotel room 
 
 `travel_agency_service.bal` file provides travel agency service, which consumes the other three services and arranges a complete tour for the requested user.
 
+
 ### <a name="Implementation"></a> Implementation
+
+
 
 ## <a name="testing"></a> Testing 
 
