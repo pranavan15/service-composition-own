@@ -58,7 +58,7 @@ Package `HotelReservation` contains the service that provides online hotel room 
 
 ### <a name="Implementation"></a> Implementation
 
-Let's get started with the implementation of `travel_agency_service.bal` file, which includes the implementation of the Travel agency service. This is the service that acts as the composition initiator. It gets requests from users for tour arrangements and communicates with other necessary services to successfully arrange a complete journey for the user. Refer the code attached below. Inline comments are added for better understanding.
+Let's get started with the development of `travel_agency_service.bal` file, which includes the implementation of the Travel agency service. This is the service that acts as the composition initiator. It gets requests from users for tour arrangements and communicates with other necessary services to successfully arrange a complete journey for the user. Refer the code attached below. Inline comments are added for better understanding.
 
 
 ##### travel_agency_service.bal
@@ -205,7 +205,7 @@ service<http> travelAgencyService {
 
 ```
 
-Let's next focus on the implementation of `airline_reservation_service.bal` file, which includes the implementation of the Airline reservation service. This service provides the capability of online airline ticket reservation. Refer the code attached below. Inline comments are added for better understanding.
+Let's next focus on the development of `airline_reservation_service.bal` file, which includes the implementation of the Airline reservation service. This service provides the capability of online airline ticket reservation. Refer the code attached below. Inline comments are added for better understanding.
 
 
 ##### airline_reservation_service.bal
