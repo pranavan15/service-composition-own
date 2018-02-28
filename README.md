@@ -356,7 +356,7 @@ https://github.com/ballerina-guides/service-composition/blob/master/TravelAgency
 
 ### <a name="try-it"></a> Try it Out
 
-1. Start all 4 http services by entering the following commands in sperate terminals. This will start the `Airline Reservation`, `Hotel Reservation`, `Car Rental` and `Travel Agency` services in ports 9091, 9092, 9093 and 9090 respectively.
+1. Start all 4 http services by entering the following commands in separate terminals. This will start the `Airline Reservation`, `Hotel Reservation`, `Car Rental` and `Travel Agency` services in ports 9091, 9092, 9093 and 9090 respectively.
 
    ```bash
     <SAMPLE_ROOT_DIRECTORY>$ ballerina run TravelAgency/AirlineReservation/
