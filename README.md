@@ -49,6 +49,55 @@ service-composition
 
 ### <a name="try-it"></a> Try it Out
 
+1. Start all 4 http services by entering the following commands in sperate terminals. This will start the `Airline Reservation`, `Hotel Reservation`, `Car Rental` and `Travel Agency` services in ports 9091, 9092, 9093 and 9090 respectively.
+
+   ```bash
+    <SAMPLE_ROOT_DIRECTORY>$ ballerina run TravelAgency/AirlineReservation/
+   ```
+   ```bash
+    <SAMPLE_ROOT_DIRECTORY>$ ballerina run TravelAgency/HotelReservation/
+   ```
+   ```bash
+    <SAMPLE_ROOT_DIRECTORY>$ ballerina run TravelAgency/CarRental/
+   ```
+   ```bash
+    <SAMPLE_ROOT_DIRECTORY>$ ballerina run TravelAgency/
+   ```
+   
+2. Invoke the `travelAgencyService` by sending a POST request to arrange a tour,
+
+   ```bash
+    curl -v -X POST -d \
+    '{"Name":"Alice", "ArrivalDate":"12-03-2018", "DepartureDate":"13-04-2018",
+      "Preference":{"Airline":"Business", "Accommodation":"Air Conditioned", "Car":"Air Conditioned"}}' \
+     "http://localhost:9090/travel/arrangeTour" -H "Content-Type:application/json"
+    ```
+
+    The `travelAgencyService` should respond something similar,
+    
+    ```bash
+     < HTTP/1.1 200 OK
+    {"Message":"Congratulations! Your journey is ready!!"}
+    ``` 
+
+   Sample Log Messages
+   
+   ```bash
+    2018-02-28 10:34:14,198 INFO  [TravelAgency] - Parsing request payload 
+    2018-02-28 10:34:14,201 INFO  [TravelAgency] - Successfully parsed; Username: Alice 
+    2018-02-28 10:34:14,203 INFO  [TravelAgency] - Reserving airline ticket for user: Alice
+    2018-02-28 10:33:18,381 INFO  [TravelAgency.AirlineReservation] - Successfully reserved airline ticket for user: Alice 
+    2018-02-28 10:34:14,217 INFO  [TravelAgency] - Airline reservation successful! 
+    2018-02-28 10:34:14,217 INFO  [TravelAgency] - Reserving hotel room for user: Alice
+    2018-02-28 10:33:18,645 INFO  [TravelAgency.HotelReservation] - Successfully reserved hotel room for user: Alice 
+    2018-02-28 10:34:14,225 INFO  [TravelAgency] - Hotel reservation successful! 
+    2018-02-28 10:34:14,225 INFO  [TravelAgency] - Renting car for user: Alice
+    2018-02-28 10:33:18,906 INFO  [TravelAgency.CarRental] - Successfully rented car for user: Alice 
+    2018-02-28 10:34:14,233 INFO  [TravelAgency] - Car rental successful! 
+    2018-02-28 10:34:14,235 INFO  [TravelAgency] - Successfully arranged tour for user: Alice !!    
+   ```
+   
+   
 ### <a name="unit-testing"></a> Writing Unit Tests 
 
 In ballerina, the unit test cases should be in the same package and the naming convention should be as follows,
