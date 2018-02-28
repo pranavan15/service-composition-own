@@ -229,7 +229,7 @@ service<http> travelAgencyService {
    ```bash
     curl -v -X POST -d \
     '{"Name":"Alice", "ArrivalDate":"12-03-2018", "DepartureDate":"13-04-2018",
-      "Preference":{"Airline":"Business", "Accommodation":"Air Conditioned", "Car":"Air Conditioned"}}' \
+     "Preference":{"Airline":"Business", "Accommodation":"Air Conditioned", "Car":"Air Conditioned"}}' \
      "http://localhost:9090/travel/arrangeTour" -H "Content-Type:application/json"
     ```
 
