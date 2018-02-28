@@ -97,12 +97,7 @@ service<http> travelAgencyService {
         json airlinePreference;
         json carPreference;
         // Json payload format for an http out request
-        json outReqPayload = {
-                                 "Name":"",
-                                 "ArrivalDate":"",
-                                 "DepartureDate":"",
-                                 "Preference":""
-                             };
+        json outReqPayload = {"Name":"", "ArrivalDate":"", "DepartureDate":"", "Preference":""};
 
         // Try parsing the JSON payload from the user request
         try {
