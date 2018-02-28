@@ -43,6 +43,14 @@ service-composition
 
 ```
 
+Package `AirlineReservation` contains the service that provides online flight ticket reservations.
+
+Package `CarRental` contains the service that provides online car rentals.
+
+Package `HotelReservation` contains the service that provides online hotel room reservations.
+
+`travel_agency_service.bal` file provides travel agency service, which consumes the other three services and arranges a complete tour for the requested user.
+
 ### <a name="Implementation"></a> Implementation
 
 ## <a name="testing"></a> Testing 
