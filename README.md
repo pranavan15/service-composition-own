@@ -13,15 +13,11 @@ To understanding how you can build a service composition using Ballerina, let's 
 ## <a name="pre-req"></a> Prerequisites
  
 - JDK 1.8 or later
-- Ballerina Distribution (Install Instructions:  https://ballerinalang.org/docs/quick-tour/quick-tour/#install-ballerina)
+- [Ballerina Distribution](https://ballerinalang.org/docs/quick-tour/quick-tour/#install-ballerina)
 - A Text Editor or an IDE 
 
 Optional Requirements
-- Docker (Follow instructions in https://docs.docker.com/engine/installation/)
-- Ballerina IDE plugins. ( IntelliJ IDEA, VSCode, Atom)
-- Testerina (Refer: https://github.com/ballerinalang/testerina)
-- Container-support (Refer: https://github.com/ballerinalang/container-support)
-- Docerina (Refer: https://github.com/ballerinalang/docerina)
+- Ballerina IDE plugins (IntelliJ IDEA, VSCode, Atom)
 
 ## <a name="developing-service"></a> Developing the Service
 
